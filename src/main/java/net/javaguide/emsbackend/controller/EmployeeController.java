@@ -1,5 +1,6 @@
 package net.javaguide.emsbackend.controller;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import net.javaguide.emsbackend.dto.EmployeeDto;
@@ -18,7 +19,7 @@ import java.util.List;
 public class EmployeeController {
     private EmployeeService empService;
     @PostMapping
-    public ResponseEntity<EmployeeDto> createEmployee(@RequestBody EmployeeDto employeeDto){
+    public ResponseEntity<EmployeeDto> createEmployee(@RequestBody @Valid  EmployeeDto employeeDto){
         EmployeeDto saveEmployeeDto=  empService.createEmployee(employeeDto);
         return new ResponseEntity<>(saveEmployeeDto, HttpStatus.CREATED);
     }

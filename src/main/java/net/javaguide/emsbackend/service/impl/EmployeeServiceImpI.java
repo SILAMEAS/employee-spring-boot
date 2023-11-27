@@ -1,5 +1,6 @@
 package net.javaguide.emsbackend.service.impl;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import net.javaguide.emsbackend.dto.EmployeeDto;
 import net.javaguide.emsbackend.entity.Employee;
@@ -19,8 +20,12 @@ import java.util.stream.Collectors;
 public class EmployeeServiceImpI implements EmployeeService {
     private EmployeeRepository employeeRepository;
     @Override
-    public EmployeeDto createEmployee(EmployeeDto employeeDto) {
+    public EmployeeDto createEmployee(@Valid EmployeeDto employeeDto) {
         Employee ConvertToEmployee= EmployeeMapper.mapToEmp(employeeDto);
+        employeeRepository.findByEmail(employeeDto.getEmail()).ifPresent((employee) -> {
+           throw new ResourceNotFoundException("Email exited "+employee.getLastName());
+        });
+
         Employee saveEmployee= employeeRepository.save(ConvertToEmployee);
         return EmployeeMapper.mapToEmpDto(saveEmployee);
     }
