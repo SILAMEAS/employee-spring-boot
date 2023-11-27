@@ -22,4 +22,6 @@ public class Employee {
     private  String lastName;
     @Column(name = "email_id",nullable = false,unique = true)
     private  String email;
+    @Column(name =  "age")
+    private  Number age;
 }

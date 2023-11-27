@@ -39,8 +39,8 @@ public class RestExceptionHandler {
     var fieldErrors = exception.getBindingResult().getFieldErrors();
 
     for (var fieldError : fieldErrors) {
-      str.append(" Field: ").append(fieldError.getField()).append(" Because: ")
-          .append(fieldError.getDefaultMessage()).append(" ,");
+      str.append("{").append(fieldError.getField()).append(": ")
+          .append(fieldError.getDefaultMessage()).append(" },");
     }
 
     res.setMessage(str.toString());
