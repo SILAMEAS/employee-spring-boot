@@ -23,7 +23,8 @@ public class EmployeeServiceImpI implements EmployeeService {
     public EmployeeDto createEmployee(@Valid EmployeeDto employeeDto) {
         Employee ConvertToEmployee= EmployeeMapper.mapToEmp(employeeDto);
         employeeRepository.findByEmail(employeeDto.getEmail()).ifPresent((employee) -> {
-           throw new ResourceNotFoundException("Email exited "+employee.getLastName());
+           throw new ResourceNotFoundException(
+                   "Email has been used ");
         });
 
         Employee saveEmployee= employeeRepository.save(ConvertToEmployee);
@@ -33,7 +34,7 @@ public class EmployeeServiceImpI implements EmployeeService {
     @Override
     public EmployeeDto getEmployeeById(Long employeeId) {
 
-     Employee emp= employeeRepository.findById(employeeId).orElseThrow(()->new ResourceNotFoundException("Employee is not exit with this id :"+employeeId));
+     Employee emp= employeeRepository.findById(employeeId).orElseThrow(()->new ResourceNotFoundException("Employee ID :"+employeeId+" is not found"));
       return EmployeeMapper.mapToEmpDto(emp);
     }
 

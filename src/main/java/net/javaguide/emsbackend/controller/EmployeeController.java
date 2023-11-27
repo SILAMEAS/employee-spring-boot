@@ -1,11 +1,7 @@
 package net.javaguide.emsbackend.controller;
-
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import net.javaguide.emsbackend.dto.EmployeeDto;
-import net.javaguide.emsbackend.entity.Employee;
-import net.javaguide.emsbackend.mapper.EmployeeMapper;
 import net.javaguide.emsbackend.service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

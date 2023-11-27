@@ -13,9 +13,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class EmployeeDto {
     private Long id;
-    @NotEmpty(message = "Lastname not null")
+    @NotEmpty(message = "first name can't be null")
     private  String firstName;
-    @NotEmpty(message = "Lastname not null")
+    @NotEmpty(message = "last name can't be null")
     private  String lastName;
     private  String email;
 }
